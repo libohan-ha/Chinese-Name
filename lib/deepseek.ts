@@ -1,10 +1,10 @@
 import type { NameSuggestion } from './types';
 
-if (!process.env.DEEPSEEK_API_KEY) {
-  throw new Error('DEEPSEEK_API_KEY is not defined in environment variables');
+if (typeof window !== 'undefined' && !process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY) {
+  throw new Error('NEXT_PUBLIC_DEEPSEEK_API_KEY is not defined in environment variables');
 }
 
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+const DEEPSEEK_API_KEY = process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY;
 
 export async function generateChineseName(englishName: string, interests: string): Promise<{ suggestions: NameSuggestion[] }> {
   const prompt = `Create 3 elegant and poetic Chinese names for someone named "${englishName}" who is interested in ${interests}.
